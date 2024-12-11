@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Header with Minimo Font</title>
+  <style>
+    /* Step 1: Define the Minimo font */
+    @font-face {
+      font-family: 'Minimo';
+      src: url('minimo.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      width: 50px;
+      margin-right: 10px;
+    }
+    #download {
+        width:10px;
+        height:16px;
+        padding-top: -10px;
+    }
+    .logo h4 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: 'Minimo', sans-serif; /* Use Minimo font here */
+      letter-spacing: 2px;
+    }
+    .logo .orange {
+      color: #FF6F00;
+    }
+    .logo .gray {
+      color: gray;
+    }
+    .title {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .title span:first-child {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .title span:last-child {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+    .actions div {
+      margin-left: 15px;
+      cursor: pointer;
+      color: white;
+      font-size: 1rem;
+    }
+    /* .actions div:hover {
+      text-decoration: underline;
+    } */
+    .profile-icon {
+      width: 30px;
+      height: 30px;
+      background-color: gray;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      margin-left: 20px;
+    }
+
+    /* Hamburger Icon */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1440px) {
+      .actions {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: black;
+      color: white;
+      width: 200px;
+      border: 1px solid #333;
+      padding: 10px;
+      flex-direction: column;
+    }
+    .mobile-menu div {
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+      cursor: pointer;
+      color: white;
+    }
+    .mobile-menu div:last-child {
+      border-bottom: none;
+    }
+
+    /* Ensure responsiveness down to 480px */
+    @media (max-width: 480px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .title {
+        text-align: left;
+        margin-top: 10px;
+      }
+      .mobile-menu {
+        width: 100%;
+        right: 0;
+      }
+    }
+    #ask{
+     width: 50px;
+     height: 25px;
+     background-color: white;
+     color: #FF6F00;
+     text-align: center;
+     padding-top: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="my-logo.png" alt="Logo">
+      <h4>
+        <span class="orange">MAVEN</span><span class="gray">MAG</span><span class="orange">N</span><span class="gray">ET</span>
+      </h4>
+    </div>
+    <div class="title">
+      <span>EV Category Exploration</span>
+      <span>Global | 2022-2023</span>
+    </div>
+    <div class="actions">
+      <div id="ask">ASK</div>
+      <div><img id="download" src="download.png" > Export to PowerPoint</div>
+      <div>Tutorial</div>
+      <div class="profile-icon">M</div>
+    </div>
+
+    <!-- Hamburger Menu Icon -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu (hidden by default) -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div>ASK</div>
+    <div>Export to PowerPoint</div>
+    <div>Tutorial</div>
+    <div class="profile-icon">M</div>
+  </div>
+
+  <script>
+    // Function to toggle mobile menu
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu.style.display === 'flex') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'flex';
+      }
+    }
+
+    // Function to hide mobile menu on screen resize (for large screens)
+    function handleResize() {
+      const menu = document.getElementById('mobileMenu');
+      if (window.innerWidth > 1440) {
+        menu.style.display = 'none'; // Hide the mobile menu on larger screens
+      }
+    }
+
+    // Attach event listener to handle resize
+    window.addEventListener('resize', handleResize);
+  </script>
+
+</body>
+</html>
